@@ -1,0 +1,33 @@
+# {{composer_name}}
+
+{{description}}
+
+## Package type
+
+`{{type}}`
+
+## Layout
+
+```
+{{slug}}/
+  load.{{slug}}.functions.php
+  src/Providers/{{provider_class}}.php
+  config/{{slug}}.php
+  routes/web.php
+  resources/views/components/
+  resources/css/
+  resources/js/
+  database/migrations/
+  database/factories/
+  database/seeders/
+  tests/
+```
+
+## Autoload
+
+- PSR-4: `{{namespace}}` → `src/`
+- Files: `{{load_filename}}`
+
+## License
+
+{{license}}

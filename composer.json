@@ -1,0 +1,28 @@
+{
+    "name": "webkernel/x-webdev",
+    "description": "Unified Webkernel development CLI: package scaffolding and aggregated x-* dev commands.",
+    "type": "webkernel-devtool",
+    "license": "EPL-2.0",
+    "version": "0.1.0",
+    "require": {
+        "php": ">=8.4",
+        "webkernel/standard-lifecycle": ">=0.1.0",
+        "webkernel/standard-paths": ">=0.1.0",
+        "symfony/console": "^6.0|^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Webkernel\\XWebdev\\": "src/"
+        }
+    },
+    "bin": [
+        "bin/x-webdev"
+    ],
+    "minimum-stability": "stable",
+    "extra": {
+        "webkernel": {
+            "package_repo": "git@github.com:webkernelphp/x-webdev.git",
+            "prefix": "x-webdev"
+        }
+    }
+}

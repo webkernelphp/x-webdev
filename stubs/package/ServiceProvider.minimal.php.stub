@@ -1,0 +1,16 @@
+<?php declare(strict_types=1);
+
+namespace {{namespace}}Providers;
+
+final class {{provider_class}}
+{
+    public function register(): void
+    {
+        //
+    }
+
+    public function boot(): void
+    {
+        //
+    }
+}

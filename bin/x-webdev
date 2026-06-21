@@ -1,0 +1,46 @@
+#!/usr/bin/env php
+<?php declare(strict_types=1);
+
+$autoloadCandidates = [
+    __DIR__ . '/../vendor/autoload.php',
+    __DIR__ . '/../../autoload.php',
+    __DIR__ . '/../../third_party/autoload.php',
+    __DIR__ . '/../../../autoload.php',
+    __DIR__ . '/../../../third_party/autoload.php',
+];
+
+$autoloaded = false;
+
+foreach ($autoloadCandidates as $candidate) {
+    if (file_exists($candidate)) {
+        require $candidate;
+        $autoloaded = true;
+        break;
+    }
+}
+
+if (!$autoloaded) {
+    fwrite(STDERR, "Composer autoloader not found. Run 'composer install' first.\n");
+    exit(1);
+}
+
+use Symfony\Component\Console\Application;
+use Webkernel\XWebdev\CommandRegistry;
+use Webkernel\XWebdev\Config\ConfigLoader;
+use Webkernel\XWebdev\DevCommandFactory;
+use Webkernel\XWebdev\XWebdev;
+
+$configPath = webapp_path('x-webdev.php');
+
+if (!file_exists($configPath)) {
+    fwrite(STDERR, "Required x-webdev config not found: {$configPath}\n");
+    fwrite(STDERR, "Publish packages/x-webdev/config/x-webdev.php to the project root.\n");
+    exit(1);
+}
+
+$webdev = new XWebdev(new ConfigLoader($configPath));
+
+$app = new Application('x-webdev', '0.1.0');
+(new CommandRegistry($webdev, new DevCommandFactory($webdev)))->register($app);
+
+exit($app->run());

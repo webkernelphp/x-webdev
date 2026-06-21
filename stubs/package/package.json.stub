@@ -1,0 +1,8 @@
+{
+    "name": "{{slug}}",
+    "private": true,
+    "description": "{{description}}",
+    "scripts": {
+        "build": "echo \"No frontend build configured yet.\""
+    }
+}
