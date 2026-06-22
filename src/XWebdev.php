@@ -8,9 +8,9 @@ use Webkernel\XWebdev\Exceptions\XWebdevException;
 /**
  * Composition root for the unified x-webdev CLI.
  */
-final class XWebdev
+final readonly class XWebdev
 {
-    public function __construct(private readonly ConfigLoader $config)
+    public function __construct(private ConfigLoader $config)
     {
     }
 

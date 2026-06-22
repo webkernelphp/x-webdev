@@ -11,7 +11,7 @@ final readonly class DevCommandFactory
     {
     }
 
-    public function create(string $class): Command
+    public function create(string $class): \Webkernel\XWebdev\XCommand
     {
         if (!class_exists($class) || !is_subclass_of($class, XCommand::class)) {
             throw new XWebdevException("Command '{$class}' must extend XCommand.");

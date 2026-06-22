@@ -37,8 +37,10 @@ final readonly class CommandRegistry
 
         foreach (glob($commandsDir . DIRECTORY_SEPARATOR . '*Command.php') ?: [] as $file) {
             $class = $namespace . basename($file, '.php');
-
-            if (!class_exists($class) || (new \ReflectionClass($class))->isAbstract()) {
+            if (!class_exists($class)) {
+                continue;
+            }
+            if ((new \ReflectionClass($class))->isAbstract()) {
                 continue;
             }
 

@@ -34,12 +34,19 @@ final class CreatePackageCommand extends XCommand
             ->addOption('force', 'f', InputOption::VALUE_NONE, 'Overwrite existing scaffold files.');
     }
 
+    #[\Override]
     protected function needsInput(InputInterface $input): bool
     {
-        return $this->resolvedVendor($input) === null
-            || $this->resolvedType($input) === null
-            || $this->resolvedSlug($input) === null
-            || $this->resolvedNamespace($input, false) === null;
+        if ($this->resolvedVendor($input) === null) {
+            return true;
+        }
+        if (!$this->resolvedType($input) instanceof \Webkernel\StdLifecycle\Installer\SLCPackageType) {
+            return true;
+        }
+        if ($this->resolvedSlug($input) === null) {
+            return true;
+        }
+        return $this->resolvedNamespace($input, false) === null;
     }
 
     protected function promptMissing(InputInterface $input, OutputInterface $output): void
@@ -59,7 +66,7 @@ final class CreatePackageCommand extends XCommand
             }
         }
 
-        if ($this->resolvedType($input) === null) {
+        if (!$this->resolvedType($input) instanceof \Webkernel\StdLifecycle\Installer\SLCPackageType) {
             $choices = array_map(static fn (SLCPackageType $t): string => $t->value, SLCPackageType::cases());
             $answer = $helper->ask(
                 $input,
@@ -110,7 +117,7 @@ final class CreatePackageCommand extends XCommand
         $slug = $this->resolvedSlug($input);
         $namespace = $this->resolvedNamespace($input);
 
-        if ($vendor === null || $type === null || $slug === null || $namespace === null) {
+        if ($vendor === null || !$type instanceof \Webkernel\StdLifecycle\Installer\SLCPackageType || $slug === null || $namespace === null) {
             return $this->gentleStart($output, $this->hintLines());
         }
 
