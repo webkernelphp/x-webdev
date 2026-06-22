@@ -3,11 +3,11 @@
     "description": "Unified Webkernel development CLI: package scaffolding and aggregated x-* dev commands.",
     "type": "webkernel-devtool",
     "license": "EPL-2.0",
-    "version": "0.1.1",
+    "version": "0.12.0",
     "require": {
         "php": ">=8.4",
-        "webkernel/standard-lifecycle": ">=0.1.0",
-        "webkernel/standard-paths": ">=0.1.0",
+        "webkernel/standard-lifecycle": "0.12.0",
+        "webkernel/standard-paths": "0.12.0",
         "symfony/console": "^6.0|^7.0"
     },
     "autoload": {
