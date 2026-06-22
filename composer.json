@@ -3,7 +3,7 @@
     "description": "Unified Webkernel development CLI: package scaffolding and aggregated x-* dev commands.",
     "type": "webkernel-devtool",
     "license": "EPL-2.0",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "require": {
         "php": ">=8.4",
         "webkernel/standard-lifecycle": ">=0.1.0",

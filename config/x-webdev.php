@@ -38,4 +38,13 @@ return [
     'default_namespace' => 'Webkernel',
     'default_license' => 'EPL-2.0',
     'github_org' => 'webkernelphp',
+
+    /*
+    |--------------------------------------------------------------------------
+    | PHP constraint for generated composer.json (require.php)
+    |--------------------------------------------------------------------------
+    | Do NOT put this value in config.platform.php — Packagist rejects constraints
+    | there (use an exact version like 8.4.0 only in local root composer.json).
+    */
+    'default_php_constraint' => '>=8.4',
 ];

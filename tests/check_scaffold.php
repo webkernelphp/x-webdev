@@ -50,6 +50,10 @@ $built = $scaffold->create(
 $composerPath = dirname(__DIR__, 3) . '/packages/json-escape-test/composer.json';
 $composer = json_decode((string) file_get_contents($composerPath), true, 512, JSON_THROW_ON_ERROR);
 assert($composer['extra']['laravel']['providers'][0] === 'Webkernel\\Json\\Escape\\Test\\Providers\\TestServiceProvider');
+assert($composer['require']['php'] === '>=8.4');
+
+$platformPhp = $composer['config']['platform']['php'] ?? null;
+assert($platformPhp === null || ! preg_match('/[<>=]/', (string) $platformPhp));
 
 shell_exec('rm -rf ' . escapeshellarg(dirname(__DIR__, 3) . '/packages/json-escape-test'));
 

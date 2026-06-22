@@ -69,7 +69,9 @@ final readonly class PackageWriter
         $githubOrg = $this->config->getString('github_org', 'webkernelphp');
         $namespace = rtrim($blueprint->namespace, '\\') . '\\';
 
-        $require = ['php' => '>=8.4'];
+        $require = [
+            'php' => $this->config->getString('default_php_constraint', '>=8.4'),
+        ];
         if ($blueprint->usesLaravel()) {
             $require['laravel/framework'] = '*';
             $require['webkernel/standard-lifecycle'] = '>=0.1.0';
